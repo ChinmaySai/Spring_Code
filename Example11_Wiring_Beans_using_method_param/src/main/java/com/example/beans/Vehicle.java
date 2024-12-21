@@ -11,4 +11,8 @@ public class Vehicle {
         return name;
     }
 
+    public String toString() {
+		return "Vehicle [name=" + name + "]";
+	}
+     
 }
