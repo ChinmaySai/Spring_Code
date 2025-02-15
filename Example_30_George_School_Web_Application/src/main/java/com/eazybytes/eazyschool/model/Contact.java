@@ -1,5 +1,8 @@
 package com.eazybytes.eazyschool.model;
 
+import lombok.Data;
+
+@Data
 public class Contact {
 	
 	private String name;
@@ -7,7 +10,7 @@ public class Contact {
 	private String email;
 	private String subject;
 	private String message;
-	public String getName() {
+	/*public String getName() {
 		return name;
 	}
 	public void setName(String name) {
@@ -30,7 +33,7 @@ public class Contact {
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
-	}
+	}*/
 	public String getMessage() {
 		return message;
 	}
