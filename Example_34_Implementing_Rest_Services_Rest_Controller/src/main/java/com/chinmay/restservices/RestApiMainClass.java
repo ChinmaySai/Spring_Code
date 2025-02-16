@@ -17,18 +17,6 @@ public class RestApiMainClass{
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestApiMainClass.class, args);
-//		Random r=new Random();
-//		
-//		Student s=context.getBean(Student.class);
-//	       s.setRolNum(r.nextInt());
-//	       s.setName("Charan");
-//	       s.setMarks(85);
-//	       StudentService ss=context.getBean(StudentService.class);
-//	       ss.addStudent(s);
-//	       List<Student> stdata=ss.getStudents();
-//	       System.out.println("Student data "+stdata);
-//	
-		
 	}
 
 }
