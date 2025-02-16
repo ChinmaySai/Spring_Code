@@ -69,4 +69,23 @@ public class StudentRepo {
 				};
 		return jdbcTemplate.query(sql,rowmapper);
 	}
+	
+	public List<Student> findByName(String name)
+	{
+		String sql="select * from student where sname='"+name+"'";
+		RowMapper<Student> rowmapper=new RowMapper<Student>()
+				{
+
+					@Override
+					public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
+                            Student s=new Student();
+                            s.setRolNum(rs.getInt("sid"));
+                            s.setName(rs.getString("sname"));
+                            s.setMarks(rs.getInt("marks"));
+                            return s;
+					}
+					
+				};
+		return jdbcTemplate.query(sql,rowmapper);
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +28,25 @@ public class StudentController {
 public List<Student> getStudentDataById(@RequestParam String sid)
 {
 	return studrepo.findById(sid);
+}
+
+@GetMapping(value="/getStudentByName")
+@ResponseBody
+public List<Student> getStudentDataByName(@RequestBody Student stu)
+{
+	if(stu!=null&&stu.getName()!=null)
+	{
+		return studrepo.findByName(stu.getName());
+		//return studrepo.findAll();
+	}
+	else
+	{
+		return List.of();
+	}
+		
+}
+{
+	
 }
 	
 }

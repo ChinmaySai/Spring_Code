@@ -13,10 +13,10 @@ import com.chinmay.restservices.service.StudentService;
 
 
 @SpringBootApplication
-public class SpringJdbcApplication {
+public class RestApiMainClass{
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringJdbcApplication.class, args);
+		SpringApplication.run(RestApiMainClass.class, args);
 //		Random r=new Random();
 //		
 //		Student s=context.getBean(Student.class);
