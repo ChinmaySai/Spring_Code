@@ -1,16 +1,28 @@
 package com.chinmay.restservices.controller;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chinmay.restservices.model.Response;
 import com.chinmay.restservices.model.Student;
 import com.chinmay.restservices.repo.StudentRepo;
 
@@ -23,6 +35,7 @@ public class StudentController {
 	
 	@Autowired
 	StudentRepo studrepo;
+	private Logger log=LoggerFactory.getLogger(StudentController.class);
 	
 @GetMapping("/getStudentById")	
 //@ResponseBody
@@ -46,5 +59,19 @@ public List<Student> getStudentDataByName(@RequestBody Student stu)
 	}
 		
 }
+
+@PostMapping(value="/saveStudentDetails")
+public ResponseEntity<Response> saveStudentData(@RequestHeader("invocationFrom") String invocationFrom,  @RequestBody Student stu)
+{
+	log.info("Api is Invoked from "+invocationFrom);
+	studrepo.save(stu);
+	Response resp=new Response();
+	resp.setStatusCode("200");
+	resp.setStatusMsg("Data Saved Successfully");
+	
+	return ResponseEntity.status(HttpStatus.CREATED).header("isMsgSaved", "true").body(resp);
+	
+}
+
 	
 }

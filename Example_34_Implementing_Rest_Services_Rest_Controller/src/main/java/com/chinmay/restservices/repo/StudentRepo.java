@@ -88,4 +88,11 @@ public class StudentRepo {
 				};
 		return jdbcTemplate.query(sql,rowmapper);
 	}
+	public void delete(int sid)
+	{
+		String sql="DELETE FROM STUDENT WHERE SID = ?";
+		int j=jdbcTemplate.update(sql,sid);
+		System.out.println("Deletion ");
+		
+	}
 }
