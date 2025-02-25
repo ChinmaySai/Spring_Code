@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -92,6 +93,24 @@ public ResponseEntity<Response> deleteStudent(RequestEntity<Student> request)
 	response.setStatusMsg("Deleted Successfully");
 	return ResponseEntity.status(HttpStatus.OK).body(response);
 	
+}
+
+@PatchMapping(value="/updateStudent")
+public ResponseEntity<Response> updateStudent(RequestEntity<Student> request)
+{
+	Response res=new Response();
+	Student stud=request.getBody();
+ List<Student> list=studrepo.findById(String.valueOf(stud.getRolNum()));
+ if(list.size()==0)
+ {
+	res.setStatusCode("400");
+	res.setStatusMsg("Invalid RollNum Received");
+	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
+ }
+	studrepo.update(stud.getRolNum(),stud.getMarks());
+	res.setStatusCode("200");
+	res.setStatusMsg("Specified Row Updated Successfully");
+	return ResponseEntity.status(HttpStatus.OK).body(res);
 }
 	
 }

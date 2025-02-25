@@ -95,4 +95,10 @@ public class StudentRepo {
 		System.out.println("Deletion ");
 		
 	}
+	public void update(int sid,int marks)
+	{
+		String sql="UPDATE STUDENT SET MARKS =? WHERE SID=?";
+		int updatedrows=jdbcTemplate.update(sql,marks,sid);
+		System.out.println("No of rows Affected"+updatedrows);
+	}
 }
