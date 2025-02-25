@@ -73,5 +73,25 @@ public ResponseEntity<Response> saveStudentData(@RequestHeader("invocationFrom")
 	
 }
 
+@DeleteMapping(value="/deleteStudent")
+public ResponseEntity<Response> deleteStudent(RequestEntity<Student> request)
+{
+	HttpHeaders headers=request.getHeaders();
+	//headers.entrySet();
+	Set<String> st=headers.keySet();
+	Iterator<String> it=st.iterator();
+	while(it.hasNext())
+	{
+		System.out.println("Key :"+it.next()+" Value :"+headers.get(it.next()));
+	}
+	
+	Student student=request.getBody();
+	studrepo.delete(student.getRolNum());
+	Response response=new Response();
+	response.setStatusCode("200");
+	response.setStatusMsg("Deleted Successfully");
+	return ResponseEntity.status(HttpStatus.OK).body(response);
+	
+}
 	
 }
