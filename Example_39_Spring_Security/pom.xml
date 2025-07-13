@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.eazybytes</groupId>
-	<artifactId>Example_39_Spring_Security</artifactId>
+	<artifactId>Example_39_Spring_Security_Example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>example_39</name>
 	<description>Spring Security</description>
